@@ -1,14 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UserEntity } from '../entity/user.entity';
-import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
-
-interface SignupParams {
-  username: string;
-  password: string;
-}
+import { CreateUserDto } from '../dto/create.dts';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -18,11 +14,17 @@ export class AuthService {
     private jwt: JwtService,
   ) {}
 
-  async signup(user: SignupParams): Promise<UserEntity> {
-    const salt = await bcrypt.genSalt();
-    const hash = await bcrypt.hash(user.password, salt);
-    user.password = hash;
-    return await this.userRepository.save(user);
+  async signup(user: CreateUserDto): Promise<UserEntity> {
+    const { username } = user;
+    const existUser = await this.userRepository.findOne({
+      where: { username },
+    });
+    if (existUser) {
+      throw new HttpException('用户名已存在', HttpStatus.BAD_REQUEST);
+    }
+
+    const newUser = await this.userRepository.create(user);
+    return await this.userRepository.save(newUser);
   }
 
   async validateUser(username: string, password: string): Promise<any> {
@@ -40,8 +42,6 @@ export class AuthService {
   async login(user: any) {
     const payload = { username: user.username, sub: user.id, role: user.role };
 
-    return {
-      access_token: this.jwt.sign(payload),
-    };
+    return this.jwt.sign(payload);
   }
 }
