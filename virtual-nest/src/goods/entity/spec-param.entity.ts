@@ -9,14 +9,14 @@ import { SpecGroupEntity } from './spec-group.entity';
 
 @Entity()
 export class SpecParamEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column()
   name: string;
 
   /** 是否为数字参数 */
-  @Column({ type: 'boolean' })
+  @Column({ type: 'boolean', default: false })
   numeric: boolean;
 
   @Column()
@@ -25,7 +25,7 @@ export class SpecParamEntity {
   @Column()
   segments: string;
 
-  @Column({ type: 'boolean' })
+  @Column({ type: 'boolean', default: false })
   isDeleted: boolean;
 
   @ManyToOne(() => SpecGroupEntity, (item) => item.id)

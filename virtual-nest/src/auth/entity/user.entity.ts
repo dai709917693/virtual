@@ -5,9 +5,12 @@ import {
   UpdateDateColumn,
   PrimaryGeneratedColumn,
   BeforeInsert,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
 import { Exclude } from 'class-transformer';
 import * as bcrypt from 'bcrypt';
+import { RoleEntity } from './role.entity';
 
 // import { CartEntity } from 'src/cart/cart.entity';
 // import { OrderEntity } from 'src/order/order.entity';
@@ -15,17 +18,14 @@ import * as bcrypt from 'bcrypt';
 @Entity()
 export class UserEntity {
   @PrimaryGeneratedColumn('uuid')
-  id: number;
+  id: string;
 
-  @Column({ length: 100 })
+  @Column({ length: 100, unique: true })
   username: string;
 
   @Exclude()
   @Column()
   password: string;
-
-  @Column({ nullable: true })
-  role: string;
 
   @CreateDateColumn()
   createdAt: string;
@@ -33,13 +33,10 @@ export class UserEntity {
   @UpdateDateColumn()
   updatedAt: string;
 
-  //   @OneToMany((type) => CartEntity, (cart) => cart.id)
-  //   @JoinColumn()
-  //   cart: CartEntity[];
+  @ManyToMany(() => RoleEntity, (role) => role.users)
+  @JoinTable()
+  roles: RoleEntity[];
 
-  //   @OneToOne((type) => OrderEntity, (order) => order.id)
-  //   @JoinColumn()
-  //   order: OrderEntity;
   @BeforeInsert()
   async encryptPwd() {
     this.password = await bcrypt.hashSync(this.password, 10);

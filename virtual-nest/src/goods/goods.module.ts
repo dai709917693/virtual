@@ -7,6 +7,9 @@ import { SpecParamEntity } from './entity/spec-param.entity';
 import { StandardProductUnitEntity } from './entity/standard-product-unit.entity';
 import { StockKeepingUnitEntity } from './entity/stock-keeping-unit.entity';
 import { BrandService } from './service/brand.service';
+import { BrandController } from './controller/brand.controller';
+import { CategoryService } from './service/category.service';
+import { CategoryController } from './controller/category.controller';
 
 @Module({
   imports: [
@@ -19,6 +22,7 @@ import { BrandService } from './service/brand.service';
       StockKeepingUnitEntity,
     ]),
   ],
-  providers: [BrandService],
+  providers: [BrandService, CategoryService],
+  controllers: [BrandController, CategoryController],
 })
 export class GoodsModule {}

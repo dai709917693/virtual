@@ -4,13 +4,13 @@ import { StandardProductUnitEntity } from './standard-product-unit.entity';
 
 @Entity()
 export class SpecGroupEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column()
   name: string;
 
-  @Column({ type: 'boolean' })
+  @Column({ type: 'boolean', default: false })
   isDeleted: boolean;
 
   @OneToMany(() => SpecParamEntity, (item) => item.id)

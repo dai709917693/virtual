@@ -16,8 +16,8 @@ import { StockKeepingUnitEntity } from './stock-keeping-unit.entity';
 /** 标准产品单元 */
 @Entity()
 export class StandardProductUnitEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column()
   title: string;
@@ -39,7 +39,7 @@ export class StandardProductUnitEntity {
   @UpdateDateColumn()
   lastUpdateTime: string;
 
-  @Column({ type: 'boolean' })
+  @Column({ type: 'boolean', default: false })
   isDeleted: boolean;
 
   @ManyToOne(() => CategoryEntity, (item) => item.spu)

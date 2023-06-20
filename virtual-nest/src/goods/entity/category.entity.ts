@@ -8,22 +8,24 @@ import {
 } from 'typeorm';
 import { BrandEntity } from './brand.entity';
 import { StandardProductUnitEntity } from './standard-product-unit.entity';
+import { Exclude } from 'class-transformer';
 
 @Entity()
 export class CategoryEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column()
   name: string;
 
-  @Column()
+  @Column({ nullable: true })
   parentId: string;
 
-  @Column({ type: 'boolean' })
+  @Column({ type: 'boolean', default: false })
   ifParent: boolean;
 
-  @Column({ type: 'boolean' })
+  @Exclude()
+  @Column({ type: 'boolean', default: false })
   isDeleted: boolean;
 
   @ManyToMany(() => BrandEntity, (brand) => brand.categories)

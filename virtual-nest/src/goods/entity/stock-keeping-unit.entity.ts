@@ -12,8 +12,8 @@ import { StandardProductUnitEntity } from './standard-product-unit.entity';
 /** 库存量单位 */
 @Entity()
 export class StockKeepingUnitEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column()
   title: string;
@@ -29,11 +29,11 @@ export class StockKeepingUnitEntity {
 
   /** 是否上架 */
   @Column({ type: 'boolean' })
-  saleable: string;
+  saleable: boolean;
 
   /** 是否有效 */
   @Column({ type: 'boolean' })
-  valid: string;
+  valid: boolean;
 
   @CreateDateColumn()
   createTime: string;
@@ -41,7 +41,7 @@ export class StockKeepingUnitEntity {
   @UpdateDateColumn()
   lastUpdateTime: string;
 
-  @Column({ type: 'boolean' })
+  @Column({ type: 'boolean', default: false })
   isDeleted: boolean;
 
   @ManyToOne(() => StandardProductUnitEntity, (cate) => cate.skuList)
