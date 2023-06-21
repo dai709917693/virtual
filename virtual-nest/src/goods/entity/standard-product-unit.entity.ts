@@ -12,6 +12,7 @@ import { CategoryEntity } from './category.entity';
 import { BrandEntity } from './brand.entity';
 import { SpecGroupEntity } from './spec-group.entity';
 import { StockKeepingUnitEntity } from './stock-keeping-unit.entity';
+import { Exclude } from 'class-transformer';
 
 /** 标准产品单元 */
 @Entity()
@@ -26,12 +27,12 @@ export class StandardProductUnitEntity {
   subTitle: string;
 
   /** 是否上架 */
-  @Column({ type: 'boolean' })
-  saleable: string;
+  @Column({ type: 'boolean', default: false })
+  saleable: boolean;
 
   /** 是否有效 */
-  @Column({ type: 'boolean' })
-  valid: string;
+  @Column({ type: 'boolean', default: true })
+  valid: boolean;
 
   @CreateDateColumn()
   createTime: string;
@@ -39,6 +40,7 @@ export class StandardProductUnitEntity {
   @UpdateDateColumn()
   lastUpdateTime: string;
 
+  @Exclude()
   @Column({ type: 'boolean', default: false })
   isDeleted: boolean;
 

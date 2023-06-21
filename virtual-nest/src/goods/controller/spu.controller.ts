@@ -1,23 +1,23 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
-import { CreateCategoryDto } from '../dto/';
-import { CategoryService } from '../service/category.service';
+import { CreateSpuDto } from '../dto/';
+import { SpuService } from '../service/spu.service';
 
 @Controller({
-  path: 'category',
+  path: 'spu',
   version: '1',
 })
-export class CategoryController {
-  constructor(private service: CategoryService) {}
+export class SpuController {
+  constructor(private service: SpuService) {}
 
   @Post()
-  create(@Body() createDto: CreateCategoryDto) {
+  create(@Body() createDto: CreateSpuDto) {
     return this.service.create(createDto);
   }
 
-  @Get()
-  findAll() {
-    return this.service.findAll();
-  }
+  //   @Get()
+  //   findAll() {
+  //     return this.service.findAll();
+  //   }
 
   //   @Get(':id')
   //   findOne(@Param('id') id: string) {

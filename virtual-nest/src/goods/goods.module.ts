@@ -10,6 +10,10 @@ import { BrandService } from './service/brand.service';
 import { BrandController } from './controller/brand.controller';
 import { CategoryService } from './service/category.service';
 import { CategoryController } from './controller/category.controller';
+import { SpecController } from './controller/spec.controller';
+import { SpecService } from './service/spec.service';
+import { SpuController } from './controller/spu.controller';
+import { SpuService } from './service/spu.service';
 
 @Module({
   imports: [
@@ -22,7 +26,12 @@ import { CategoryController } from './controller/category.controller';
       StockKeepingUnitEntity,
     ]),
   ],
-  providers: [BrandService, CategoryService],
-  controllers: [BrandController, CategoryController],
+  providers: [BrandService, CategoryService, SpecService, SpuService],
+  controllers: [
+    BrandController,
+    CategoryController,
+    SpecController,
+    SpuController,
+  ],
 })
 export class GoodsModule {}

@@ -6,6 +6,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 import { SpecGroupEntity } from './spec-group.entity';
+import { Exclude } from 'class-transformer';
 
 @Entity()
 export class SpecParamEntity {
@@ -25,10 +26,11 @@ export class SpecParamEntity {
   @Column()
   segments: string;
 
+  @Exclude()
   @Column({ type: 'boolean', default: false })
   isDeleted: boolean;
 
   @ManyToOne(() => SpecGroupEntity, (item) => item.id)
   @JoinColumn()
-  group: SpecGroupEntity;
+  specGroup: SpecGroupEntity;
 }

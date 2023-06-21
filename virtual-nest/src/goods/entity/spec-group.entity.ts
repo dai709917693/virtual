@@ -1,6 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { SpecParamEntity } from './spec-param.entity';
 import { StandardProductUnitEntity } from './standard-product-unit.entity';
+import { Exclude } from 'class-transformer';
 
 @Entity()
 export class SpecGroupEntity {
@@ -10,6 +11,7 @@ export class SpecGroupEntity {
   @Column()
   name: string;
 
+  @Exclude()
   @Column({ type: 'boolean', default: false })
   isDeleted: boolean;
 
