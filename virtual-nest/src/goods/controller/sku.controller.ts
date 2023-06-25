@@ -1,16 +1,16 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
-import { CreateSpuDto } from '../dto/';
-import { SpuService } from '../service/spu.service';
+import { CreateSkuDto } from '../dto/';
+import { SkuService } from '../service/sku.service';
 
 @Controller({
-  path: 'spu',
+  path: 'sku',
   version: '1',
 })
-export class SpuController {
-  constructor(private service: SpuService) {}
+export class SkuController {
+  constructor(private service: SkuService) {}
 
   @Post()
-  create(@Body() createDto: CreateSpuDto) {
+  create(@Body() createDto: CreateSkuDto) {
     return this.service.create(createDto);
   }
 

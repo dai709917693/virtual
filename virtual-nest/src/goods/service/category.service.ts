@@ -19,7 +19,7 @@ export class CategoryService {
     const brands = dto.brandIds
       ? await this.brandRepo.findBy(dto.brandIds.map((id) => ({ id })))
       : [];
-    const newData = await this.categoryRepo.create(dto);
+    const newData = this.categoryRepo.create(dto);
     newData.brands = brands;
     return await this.categoryRepo.save(newData);
   }

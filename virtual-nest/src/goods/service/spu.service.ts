@@ -29,7 +29,7 @@ export class SpuService {
       this.categoryRepo.findOneBy({ id: dto.categoryId }),
       this.spgRepo.findOneBy({ id: dto.spgId }),
     ]);
-    const newData = await this.spuRepo.create(dto);
+    const newData = this.spuRepo.create(dto);
     newData.brand = brand;
     newData.category = category;
     newData.spg = spg;

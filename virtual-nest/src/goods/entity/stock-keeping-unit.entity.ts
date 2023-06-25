@@ -8,6 +8,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { StandardProductUnitEntity } from './standard-product-unit.entity';
+import { Exclude } from 'class-transformer';
 
 /** 库存量单位 */
 @Entity()
@@ -22,17 +23,17 @@ export class StockKeepingUnitEntity {
   images: string;
 
   @Column({ type: 'decimal', precision: 10, scale: 2 })
-  price: string;
+  price: number;
 
   @Column({ type: 'json' })
   param: string;
 
   /** 是否上架 */
-  @Column({ type: 'boolean' })
+  @Column({ type: 'boolean', default: false })
   saleable: boolean;
 
   /** 是否有效 */
-  @Column({ type: 'boolean' })
+  @Column({ type: 'boolean', default: true })
   valid: boolean;
 
   @CreateDateColumn()
@@ -41,6 +42,7 @@ export class StockKeepingUnitEntity {
   @UpdateDateColumn()
   lastUpdateTime: string;
 
+  @Exclude()
   @Column({ type: 'boolean', default: false })
   isDeleted: boolean;
 

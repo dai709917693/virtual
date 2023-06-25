@@ -22,8 +22,8 @@ export class SpecService {
 
   async createSpp(dto: CreateSpecParamDto) {
     const spg = await this.spgRepo.findOneBy({ id: dto.spgId });
-    const newData = await this.sppRepo.create(dto);
+    const newData = this.sppRepo.create(dto);
     newData.specGroup = spg;
-    return await this.sppRepo.save(newData);
+    return this.sppRepo.save(newData);
   }
 }
