@@ -12,6 +12,28 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: () => import('../views/login.vue')
+    },
+    {
+      path: '/example',
+      name: 'example',
+      component: () => import('../views/example/example.vue')
+    },
+    {
+      path: '/goods',
+      name: 'goods',
+      component: () => import('../views/goods/goods.vue'),
+      children: [
+        {
+          path: 'sku-list',
+          name: 'skuList',
+          component: () => import('../views/goods/sku/list.vue')
+        },
+        {
+          path: 'sku-create',
+          name: 'skuCreate',
+          component: () => import('../views/goods/sku/create.vue')
+        }
+      ]
     }
     // {
     //   path: '/about',
