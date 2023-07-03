@@ -19,6 +19,11 @@ const router = createRouter({
       component: () => import('../views/example/example.vue')
     },
     {
+      path: '/pmp',
+      name: 'pmp',
+      component: () => import('../views/example/pmp/pmp.vue')
+    },
+    {
       path: '/goods',
       name: 'goods',
       component: () => import('../views/goods/goods.vue'),
