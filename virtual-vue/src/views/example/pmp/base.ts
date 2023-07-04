@@ -81,6 +81,76 @@ export const projectDocs = {
   testAndEvaluationDoc: '测试与评估文件'
 }
 
+export const projectDocsCategories = [
+  {
+    label: '活动',
+    value: [projectDocs.activityProps, projectDocs.activityList]
+  },
+  {
+    label: '需求',
+    value: [
+      projectDocs.requirementDoc,
+      projectDocs.requirementTraceabilityMatrix,
+      projectDocs.resourceRequirement
+    ]
+  },
+  {
+    label: '资源',
+    value: [projectDocs.resourceBreakdownStructure, projectDocs.resourceCalendar]
+  },
+  {
+    label: '日志',
+    value: [projectDocs.assumingLog, projectDocs.changeLog, projectDocs.issueLog]
+  },
+  {
+    label: '估算',
+    value: [
+      projectDocs.estimationBasis,
+      projectDocs.costForecast,
+      projectDocs.durationEstimation,
+      projectDocs.progressPrediction
+    ]
+  },
+  {
+    label: '登记册',
+    value: [
+      projectDocs.lessonsLearnedRegister,
+      projectDocs.riskRegister,
+      projectDocs.registerOfRelatedParties
+    ]
+  },
+  {
+    label: '单子',
+    value: [
+      projectDocs.milestoneList,
+      projectDocs.materialResourceAllocationList,
+      projectDocs.dispatchOrder
+    ]
+  },
+  {
+    label: '日历',
+    value: [projectDocs.projectCalendar, projectDocs.resourceCalendar]
+  },
+  {
+    label: '报告',
+    value: [projectDocs.qualityReport, projectDocs.riskReport]
+  },
+  {
+    label: '其他',
+    value: [
+      projectDocs.communicationRecord,
+      projectDocs.projectSchedule,
+      projectDocs.projectScheduleNetworkDiagram,
+      projectDocs.projectScopeStatement,
+      projectDocs.qualityControlMeasurementResult,
+      projectDocs.qualityMetrics,
+      projectDocs.progressData,
+      projectDocs.teamCharter,
+      projectDocs.testAndEvaluationDoc
+    ]
+  }
+]
+
 /** 商业文件 */
 export const businessDocs = {
   case: '商业论证',
