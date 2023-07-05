@@ -1,128 +1,121 @@
 <script setup lang="ts">
 import { progress } from './progress'
-import DocIcon from '@/components/icon/doc.vue'
-import CheckListIcon from '@/components/icon/checkList.vue'
-import { projectDocs, plan, businessDocs, other, projectDocsCategories } from './base'
+import Docs from './docs.vue'
+import { ProgressGroupName, knowledgeArea, progressGroup } from './base'
+import CoverCard from '@/components/card/cover.vue'
 /** 都说环境塑造人，那就~改回书房吧 */
 /** 编程已不仅是职业 */
-/** 屏幕替代了我的想象力，不是电脑 */
+/** 不是电脑而是屏幕替代了我的想象力 */
 
-console.log(progress)
+const curKnowledgeIndex = ref(0)
+const progressGroupIndex = ref(ProgressGroupName.Startup)
+const progressIndex = ref(0)
+const curProgress = computed(() => {
+  return progress[curKnowledgeIndex.value]?.[progressGroupIndex.value]?.[progressIndex.value]
+})
+
+function handleKnowledgeChange() {
+  progressGroupIndex.value = Object.entries(progress[curKnowledgeIndex.value])[0][0] as any
+  progressIndex.value = 0
+}
+
+function handleProgressGroupChange() {
+  progressIndex.value = 0
+}
 </script>
 <template>
-  <div></div>
-  <!-- <div class="docs">
-    <div class="left-title">项目文件</div>
-    <el-card class="doc-right">
-      <div v-for="(item, key) in projectDocs" :key="key" class="doc">
-        <doc-icon :width="30" class="doc-icon"></doc-icon>
-        {{ item }}
-      </div>
-    </el-card>
-  </div> -->
-  <div class="docs">
-    <div class="left-title">项目文件</div>
-    <div class="doc-right second-docs">
-      <div class="docs" v-for="(category, index) in projectDocsCategories" :key="index">
-        <div class="left-title">{{ category.label }}</div>
-        <el-card class="doc-right">
-          <div v-for="(item, key) in category.value" :key="key" class="doc">
-            <doc-icon :width="30" class="doc-icon"></doc-icon>
-            {{ item }}
+  <div class="container">
+    <cover-card class="menu">
+      <template #cover>
+        <div class="detail">
+          项目{{ knowledgeArea[curKnowledgeIndex] }}管理
+          <div>{{ progressGroup[progressGroupIndex] }}过程组</div>
+          <div>
+            {{ curProgress?.title }}
           </div>
-        </el-card>
+        </div>
+      </template>
+      <el-form class="form">
+        <el-form-item>
+          <el-radio-group v-model="curKnowledgeIndex" @change="handleKnowledgeChange">
+            <el-radio-button
+              v-for="(item, index) in knowledgeArea"
+              :key="item"
+              :label="index"
+              :disabled="index >= progress.length"
+              >{{ item }}</el-radio-button
+            >
+          </el-radio-group>
+        </el-form-item>
+        <el-form-item>
+          <el-radio-group v-model="progressGroupIndex" @change="handleProgressGroupChange">
+            <el-radio-button
+              v-for="(item, key) in progressGroup"
+              :key="item"
+              :label="key"
+              :disabled="!progress[curKnowledgeIndex][key]"
+              >{{ item }}</el-radio-button
+            >
+          </el-radio-group>
+        </el-form-item>
+        <el-form-item>
+          <el-radio-group v-model="progressIndex">
+            <el-radio-button
+              v-for="(item, index) in progress[curKnowledgeIndex]?.[progressGroupIndex]"
+              :key="item"
+              :label="index"
+              >{{ item.title }}</el-radio-button
+            >
+          </el-radio-group>
+        </el-form-item>
+      </el-form>
+    </cover-card>
+
+    <div class="box-container">
+      <div class="box">
+        <el-card class="box-title">输入</el-card>
+        <docs :nodes="curProgress?.input"></docs>
+      </div>
+      <div class="box">
+        <el-card class="box-title">输出</el-card>
+        <docs :nodes="curProgress?.output"></docs>
       </div>
     </div>
   </div>
-  <div class="docs">
-    <div class="left-title">商业文件</div>
-    <el-card class="doc-right">
-      <div v-for="(item, key) in businessDocs" :key="key" class="doc">
-        <doc-icon :width="30" class="doc-icon"></doc-icon>
-        {{ item }}
-      </div>
-    </el-card>
-  </div>
-  <div class="docs">
-    <div class="left-title">其他</div>
-    <el-card class="doc-right">
-      <div v-for="(item, key) in other" :key="key" class="doc">
-        <doc-icon :width="30" class="doc-icon"></doc-icon>
-        {{ item }}
-      </div>
-    </el-card>
-  </div>
-  <div class="docs">
-    <div class="left-title">项目管理计划</div>
-    <el-card class="doc-right">
-      <div v-for="(item, index) in plan" :key="index" class="plan">
-        <check-list-icon :width="30" class="plan-icon"></check-list-icon>
-        {{ item }}
-      </div>
-    </el-card>
-  </div>
 </template>
 <style scoped lang="scss">
-.left-title {
-  width: 60px;
-  box-sizing: border-box;
-  padding: 10px 20px;
-  overflow: hidden;
-  box-shadow: -3px 0px 12px rgba(0, 0, 0, 0.12);
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  display: flex;
-  align-items: center;
-  color: #333;
-  font-size: 20px;
+.container {
+}
+.menu {
+  width: 800px;
+  height: 150px;
+  margin: 0 auto 20px;
+}
+.detail {
+  color: #fff;
+  text-align: center;
+  font-size: 30px;
   font-weight: bold;
-  border: 1px solid #e4e7ed;
-  border-right: none;
+  line-height: 1.5;
 }
-.doc {
-  float: left;
-  margin: 5px;
-  width: 80px;
-  height: 80px;
-  text-align: center;
-  color: #333;
-  .doc-icon {
-    margin: 0 auto 10px;
-  }
+.form {
+  padding: 10px;
 }
-.second-docs {
+.box-container {
+  width: 100%;
   display: flex;
-  flex-flow: row wrap;
-  .docs {
-    width: 50%;
-  }
+  overflow: hidden;
 }
-.doc-right {
-  flex: 1;
-  :deep(.el-card__body) {
-    padding: 5px;
-    &:after {
-      content: '';
-      display: block;
-      height: 0;
-      clear: both;
-    }
-  }
-}
-.docs {
-  width: 80%;
-  margin: auto;
-  display: flex;
-}
-.plan {
-  float: left;
-  margin: 5px;
-  width: 80px;
-  height: 90px;
+.box-title {
+  width: 700px;
+  font-size: 20px;
   text-align: center;
-  color: #333;
-  .plan-icon {
-    margin: 0 auto 10px;
-  }
+}
+.box {
+  width: 50%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>

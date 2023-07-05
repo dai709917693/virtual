@@ -1,4 +1,4 @@
-const knowledgeArea = [
+export const knowledgeArea = [
   '整合',
   '范围',
   '进度',
@@ -128,6 +128,15 @@ export const projectDocsCategories = [
     ]
   },
   {
+    label: '进度',
+    value: [
+      projectDocs.projectSchedule,
+      projectDocs.projectScheduleNetworkDiagram,
+      projectDocs.progressData,
+      projectDocs.progressPrediction
+    ]
+  },
+  {
     label: '日历',
     value: [projectDocs.projectCalendar, projectDocs.resourceCalendar]
   },
@@ -136,15 +145,14 @@ export const projectDocsCategories = [
     value: [projectDocs.qualityReport, projectDocs.riskReport]
   },
   {
+    label: '质量',
+    value: [projectDocs.qualityControlMeasurementResult, projectDocs.qualityMetrics]
+  },
+  {
     label: '其他',
     value: [
       projectDocs.communicationRecord,
-      projectDocs.projectSchedule,
-      projectDocs.projectScheduleNetworkDiagram,
       projectDocs.projectScopeStatement,
-      projectDocs.qualityControlMeasurementResult,
-      projectDocs.qualityMetrics,
-      projectDocs.progressData,
       projectDocs.teamCharter,
       projectDocs.testAndEvaluationDoc
     ]
@@ -174,7 +182,9 @@ export const other = {
   /** 工作绩效信息 */
   workPerformanceInfo: '工作绩效信息',
   /** 工作绩效报告 */
-  workPerformanceReport: '工作绩效报告'
+  workPerformanceReport: '工作绩效报告',
+  /** 可交付结果 */
+  deliverables: '可交付结果'
 }
 
 /** 项目管理计划 */
@@ -194,8 +204,6 @@ export let plan: string[] = []
   plan = plan.concat(endOfPlan)
 })()
 
-export const progressGroup = ['启动', '规划', '执行', '监控', '收尾']
-
 export enum ProgressGroupName {
   'Startup',
   'Plan',
@@ -204,13 +212,21 @@ export enum ProgressGroupName {
   'Close'
 }
 
+export const progressGroup = {
+  [ProgressGroupName.Startup]: '启动',
+  [ProgressGroupName.Plan]: '规划',
+  [ProgressGroupName.Exec]: '执行',
+  [ProgressGroupName.Monitor]: '监控',
+  [ProgressGroupName.Close]: '收尾'
+}
+
 export enum NodeType {
   BusinessDoc,
   ProjectDoc,
   Plan,
   Other
 }
-interface Node {
+export interface Node {
   type: NodeType
   isUpdate?: boolean
   value?: string[]
@@ -220,4 +236,4 @@ interface ProgressItem {
   input: Node[]
   output: Node[]
 }
-export type Progress = Record<ProgressGroupName | number, ProgressItem[]>[]
+export type Progress = Record<ProgressGroupName | number, ProgressItem[]>

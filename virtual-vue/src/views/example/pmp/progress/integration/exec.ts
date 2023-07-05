@@ -18,7 +18,7 @@ export const exec = [
       },
       {
         type: NodeType.Other,
-        value: ['可交付结果', other.env, other.assets]
+        value: [other.deliverables, other.env, other.assets]
       }
     ],
     output: [

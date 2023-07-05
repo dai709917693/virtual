@@ -1,5 +1,4 @@
 import { NodeType, other, projectDocs } from '../../base'
-
 export const startup = [
   {
     title: '制定项目章程',

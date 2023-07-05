@@ -46,7 +46,7 @@ export const plan = [
     output: [
       {
         type: NodeType.Other,
-        value: ['可交付结果', other.workPerformanceData, other.changeRequest]
+        value: [other.deliverables, other.workPerformanceData, other.changeRequest]
       },
       {
         type: NodeType.ProjectDoc,
