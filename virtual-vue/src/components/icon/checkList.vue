@@ -124,7 +124,7 @@ const paperStyle = computed(() => {
   left: 0px;
   right: 0px;
   margin: auto;
-  z-index: 99;
+  z-index: 5;
   border-radius: 5px;
   box-shadow: 0px 2px 0px #88918e;
 }
@@ -137,7 +137,7 @@ const paperStyle = computed(() => {
   left: 0px;
   right: 0px;
   margin: auto;
-  z-index: 999;
+  z-index: 9;
   border: 10px solid #a3aca9;
 }
 </style>

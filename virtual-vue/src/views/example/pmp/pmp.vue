@@ -82,6 +82,7 @@ function handleProgressGroupChange() {
       </div>
     </div>
   </div>
+  <docs :interactive="true"></docs>
 </template>
 <style scoped lang="scss">
 .container {
@@ -113,6 +114,7 @@ function handleProgressGroupChange() {
 }
 .box {
   width: 50%;
+  height: 800px;
   overflow: hidden;
   display: flex;
   flex-direction: column;

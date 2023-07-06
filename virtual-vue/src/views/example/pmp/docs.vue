@@ -2,7 +2,11 @@
 import DocIcon from '@/components/icon/doc.vue'
 import CheckListIcon from '@/components/icon/checkList.vue'
 import { plan, businessDocs, other, projectDocsCategories, NodeType, type Node } from './base'
-const props = defineProps<{ nodes: Node[] }>()
+const props = withDefaults(defineProps<{ nodes?: Node[]; interactive?: boolean }>(), {
+  interactive: false
+})
+
+const showNodeList = ref<string[]>([])
 
 const otherNode = ref<string[]>([])
 const projectDocsNode = ref<string[]>([])
@@ -52,9 +56,13 @@ function exist(origins: string[], targets: string[]) {
     return targets.includes(origin)
   })
 }
+
+function showNode(id: string) {
+  showNodeList.value.push(id)
+}
 </script>
 <template>
-  <div class="docs-container">
+  <div class="docs-container" :class="[!nodes && 'show-all', interactive && 'interactive']">
     <div class="docs" :class="!projectDocsNode.length ? 'docs-hidden' : 'docs-highlight'">
       <div class="left-title">项目文件</div>
       <div class="doc-right second-docs">
@@ -70,10 +78,16 @@ function exist(origins: string[], targets: string[]) {
               v-for="(item, key) in category.value"
               :key="key"
               class="doc"
-              :class="!projectDocsNode.includes(item) && 'doc-hidden'"
+              :class="[
+                !projectDocsNode.includes(item) && 'doc-hidden',
+                showNodeList.includes(item + key) && 'doc-show'
+              ]"
+              @click="showNode(item + key)"
             >
-              <doc-icon :width="30" class="doc-icon"></doc-icon>
-              {{ item }}
+              <div class="doc-cont">
+                <doc-icon :width="30" class="doc-icon"></doc-icon>
+                {{ item }}
+              </div>
             </div>
           </el-card>
         </div>
@@ -86,10 +100,16 @@ function exist(origins: string[], targets: string[]) {
           v-for="(item, key) in businessDocs"
           :key="key"
           class="doc"
-          :class="!businessDocsNode.includes(item) && 'doc-hidden'"
+          :class="[
+            !businessDocsNode.includes(item) && 'doc-hidden',
+            showNodeList.includes(item + key) && 'doc-show'
+          ]"
+          @click="showNode(item + key)"
         >
-          <doc-icon :width="30" class="doc-icon"></doc-icon>
-          {{ item }}
+          <div class="doc-cont">
+            <doc-icon :width="30" class="doc-icon"></doc-icon>
+            {{ item }}
+          </div>
         </div>
       </el-card>
     </div>
@@ -100,10 +120,16 @@ function exist(origins: string[], targets: string[]) {
           v-for="(item, key) in other"
           :key="key"
           class="doc"
-          :class="!otherNode.includes(item) && 'doc-hidden'"
+          :class="[
+            !otherNode.includes(item) && 'doc-hidden',
+            showNodeList.includes(item + key) && 'doc-show'
+          ]"
+          @click="showNode(item + key)"
         >
-          <doc-icon :width="30" class="doc-icon"></doc-icon>
-          {{ item }}
+          <div class="doc-cont">
+            <doc-icon :width="30" class="doc-icon"></doc-icon>
+            {{ item }}
+          </div>
         </div>
       </el-card>
     </div>
@@ -113,11 +139,17 @@ function exist(origins: string[], targets: string[]) {
         <div
           v-for="(item, index) in plan"
           :key="index"
-          class="plan"
-          :class="!planNode.includes(item) && 'doc-hidden'"
+          class="doc"
+          :class="[
+            !planNode.includes(item) && 'doc-hidden',
+            showNodeList.includes(item + index) && 'doc-show'
+          ]"
+          @click="showNode(item + index)"
         >
-          <check-list-icon :width="30" class="plan-icon"></check-list-icon>
-          {{ item }}
+          <div class="doc-cont">
+            <check-list-icon :width="30" class="doc-icon"></check-list-icon>
+            {{ item }}
+          </div>
         </div>
       </el-card>
     </div>
@@ -127,6 +159,60 @@ function exist(origins: string[], targets: string[]) {
 .docs-container {
   transform: scale(0.7);
   transform-origin: 50% 0;
+}
+
+.interactive {
+  .doc {
+    cursor: pointer;
+    position: relative;
+
+    .doc-cont {
+      padding-top: 5px;
+      box-sizing: border-box;
+      position: relative;
+      background-color: #fff;
+      height: 100%;
+      transform: rotateY(180deg);
+      transition: 0.3s;
+      transform-style: preserve-3d;
+      &:before {
+        box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.2);
+        z-index: 10;
+        content: '';
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-color: #fff;
+        transform: rotateY(180deg);
+        backface-visibility: hidden;
+      }
+    }
+    &:hover {
+      .doc-cont {
+        transform: rotateY(0deg);
+      }
+    }
+  }
+  .doc-show {
+    .doc-cont {
+      transform: rotateY(0deg);
+    }
+  }
+}
+.show-all {
+  .docs-hidden {
+    filter: none;
+    opacity: 1;
+  }
+  .doc-hidden {
+    filter: none;
+    opacity: 1;
+  }
 }
 .docs {
   width: 1000px;
@@ -172,7 +258,7 @@ function exist(origins: string[], targets: string[]) {
   float: left;
   margin: 5px;
   width: 80px;
-  height: 80px;
+  height: 95px;
   text-align: center;
   color: #333;
   font-size: 18px;
@@ -198,19 +284,6 @@ function exist(origins: string[], targets: string[]) {
       height: 0;
       clear: both;
     }
-  }
-}
-
-.plan {
-  float: left;
-  margin: 5px;
-  width: 80px;
-  height: 90px;
-  text-align: center;
-  color: #333;
-  font-size: 18px;
-  .plan-icon {
-    margin: 0 auto 10px;
   }
 }
 </style>
