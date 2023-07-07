@@ -96,7 +96,11 @@ export const projectDocsCategories = [
   },
   {
     label: '资源',
-    value: [projectDocs.resourceBreakdownStructure, projectDocs.resourceCalendar]
+    value: [
+      projectDocs.resourceBreakdownStructure,
+      projectDocs.resourceCalendar,
+      projectDocs.materialResourceAllocationList
+    ]
   },
   {
     label: '日志',
