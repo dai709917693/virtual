@@ -109,6 +109,7 @@ export const projectDocsCategories = [
   {
     label: '估算',
     value: [
+      projectDocs.costEstimation,
       projectDocs.estimationBasis,
       projectDocs.costForecast,
       projectDocs.durationEstimation,
