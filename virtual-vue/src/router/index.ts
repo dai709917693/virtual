@@ -24,6 +24,11 @@ const router = createRouter({
       component: () => import('../views/example/pmp/pmp.vue')
     },
     {
+      path: '/montyHallProblem',
+      name: 'montyHallProblem',
+      component: () => import('../views/example/monty-hall-problem/montyHallProblem.vue')
+    },
+    {
       path: '/goods',
       name: 'goods',
       component: () => import('../views/goods/goods.vue'),

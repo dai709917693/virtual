@@ -1,0 +1,208 @@
+[
+  {
+    "title": "史诗意义与使命感",
+    "origin": "人们认为自己在从事比事情本身更伟大的事情",
+    "features": ["最崇高的核心驱动力", "首个白帽核心驱动力"],
+    "suitableStage": ["发现", "入门"],
+    "advantage": ["增强其他7个核心驱动力"],
+    "disadvantage": ["难以保证可信度", "缺乏紧迫性"],
+    "skills": [
+      {
+        "label": "叙事",
+        "index": 10
+      },
+      {
+        "label": "人类英雄",
+        "index": 27
+      },
+      {
+        "label": "精英主义",
+        "index": 26
+      },
+      {
+        "label": "新手的好运气",
+        "index": 23
+      },
+      {
+        "label": "免费午餐",
+        "index": 24
+      }
+    ]
+  },
+  {
+    "title": "进步与成就感",
+    "origin": "人们希望成长、完成特定的目标",
+    "features": ["PBL系统基于该驱动力", "游戏元素易被滥用", "最受欢迎的左脑驱动力"],
+    "suitableStage": [],
+    "advantage": ["最容易设计的"],
+    "disadvantage": ["一旦被滥用容易变得无趣"],
+    "skills": [
+      {
+        "label": "进度条",
+        "index": 4
+      },
+      {
+        "label": "摇滚明星效应",
+        "index": 92
+      },
+      {
+        "label": "成就象征",
+        "index": 2
+      },
+      {
+        "label": "状态积分",
+        "index": 1
+      },
+      {
+        "label": "排行榜",
+        "index": 3
+      }
+    ]
+  },
+  {
+    "title": "创意授权与反馈",
+    "origin": "人类天生具有创造力",
+    "features": ["带来长期积极情绪", "最难正确实现"],
+    "suitableStage": ["塑造", "终局"],
+    "advantage": ["促进其他核心驱动力的表达"],
+    "disadvantage": ["消耗用户注意力"],
+    "skills": [
+      {
+        "label": "助推器",
+        "index": 31
+      },
+      {
+        "label": "里程碑解锁",
+        "index": 19
+      },
+      {
+        "label": "选择毒药/选择感",
+        "index": 89
+      },
+      {
+        "label": "有意义的选择",
+        "index": 11
+      }
+    ]
+  },
+  {
+    "title": "所有权与拥有感",
+    "origin": "我们想要增加、保护自己所拥有的东西",
+    "features": ["象征了逻辑思维的左脑", "能够吸引做很多不合理事情", "最外在动机导向的核心驱动力"],
+    "suitableStage": [],
+    "advantage": ["带来大量情感舒适和幸福感"],
+    "disadvantage": ["设计不当的话，让人们更自私、抑制好奇心、摧毁创造力"],
+    "skills": [
+      {
+        "label": "从零构建",
+        "index": 43
+      },
+      {
+        "label": "收藏集",
+        "index": 16
+      },
+      {
+        "label": "兑换积分",
+        "index": 75
+      },
+      {
+        "label": "监视情结",
+        "index": 42
+      },
+      {
+        "label": "艾尔弗雷德效应",
+        "index": 83
+      }
+    ]
+  },
+  {
+    "title": "社交影响与关联性",
+    "origin": "我们与他人相互比较的欲望",
+    "features": ["强大、持久的动机", "双刃剑，小心使用", "最受欢迎的右脑驱动力"],
+    "suitableStage": ["发现", "入门"],
+    "advantage": ["有趣"],
+    "disadvantage": [],
+    "skills": [
+      {
+        "label": "师徒关系",
+        "index": 61
+      },
+      {
+        "label": "自夸按钮",
+        "index": 57
+      },
+      {
+        "label": "奖杯架",
+        "index": 64
+      },
+      {
+        "label": "团队任务",
+        "index": 22
+      },
+      {
+        "label": "社交财富",
+        "index": 63
+      },
+      {
+        "label": "社交刺激",
+        "index": 62
+      },
+      {
+        "label": "合格锚",
+        "index": 58
+      },
+      {
+        "label": "水冷器",
+        "index": 55
+      }
+    ]
+  },
+  {
+    "title": "稀缺性与渴望",
+    "origin": "天生偏爱那些得不到的东西",
+    "features": [],
+    "suitableStage": [],
+    "advantage": [],
+    "disadvantage": [],
+    "skills": [
+      {
+        "label": "悬挂",
+        "index": 44
+      },
+      {
+        "label": "锚式并列",
+        "index": 96
+      },
+      {
+        "label": "磁帽",
+        "index": 68
+      },
+      {
+        "label": "约定动机",
+        "index": 21
+      },
+      {
+        "label": "折磨休息",
+        "index": 66
+      },
+      {
+        "label": "UI进化",
+        "index": 37
+      }
+    ]
+  },
+  {
+    "title": "未知性与好奇心",
+    "origin": "",
+    "features": [],
+    "suitableStage": [],
+    "advantage": [],
+    "disadvantage": [],
+    "skills": [
+      {
+        "label": "",
+        "index": 37
+      }
+    ]
+  }
+]
