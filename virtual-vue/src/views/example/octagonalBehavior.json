@@ -193,15 +193,65 @@
   },
   {
     "title": "未知性与好奇心",
-    "origin": "",
-    "features": [],
+    "origin": "天生好奇心；人类理性意识很懒，理性意识只有在必要时才会启动",
+    "features": ["充满惊讶的愉悦"],
     "suitableStage": [],
-    "advantage": [],
+    "advantage": ["推动用户和产品的互动"],
     "disadvantage": [],
     "skills": [
       {
-        "label": "",
-        "index": 37
+        "label": "发光的选择",
+        "index": 28
+      },
+      {
+        "label": "神秘盒子/随机奖励",
+        "index": 72
+      },
+      {
+        "label": "彩蛋/突然奖励",
+        "index": 30
+      },
+      {
+        "label": "抽奖/滚动奖励",
+        "index": 74
+      },
+      {
+        "label": "预言效应",
+        "index": 71
+      }
+    ]
+  },
+  {
+    "title": "亏损与逃避心",
+    "origin": "人们对失去感到厌恶，害怕失去时间、精力、金钱或其他资源",
+    "features": [],
+    "suitableStage": [],
+    "advantage": ["高度紧迫感和忧虑"],
+    "disadvantage": ["感到不适"],
+    "skills": [
+      {
+        "label": "合法遗产",
+        "index": 46
+      },
+      {
+        "label": "渐逝机会",
+        "index": 86
+      },
+      {
+        "label": "倒数计时器",
+        "index": 65
+      },
+      {
+        "label": "现状懒惰",
+        "index": 85
+      },
+      {
+        "label": "FOMO冲击",
+        "index": 84
+      },
+      {
+        "label": "沉没成本监狱",
+        "index": 50
       }
     ]
   }

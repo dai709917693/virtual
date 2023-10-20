@@ -44,6 +44,11 @@ const router = createRouter({
           component: () => import('../views/goods/sku/create.vue')
         }
       ]
+    },
+    {
+      path: '/voc',
+      name: 'voc',
+      component: () => import('../views/example/vocabulary/test.vue')
     }
     // {
     //   path: '/about',
