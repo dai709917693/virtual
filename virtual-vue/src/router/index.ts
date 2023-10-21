@@ -48,7 +48,7 @@ const router = createRouter({
     {
       path: '/voc',
       name: 'voc',
-      component: () => import('../views/example/vocabulary/test.vue')
+      component: () => import('../views/example/vocabulary/panel.vue')
     }
     // {
     //   path: '/about',

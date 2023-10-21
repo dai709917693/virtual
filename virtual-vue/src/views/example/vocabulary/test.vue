@@ -1,5 +1,6 @@
 <template>
   <form class="form">
+    {{ title }}
     <div class="inputs">
       <input
         ref="inputRef"
@@ -20,18 +21,20 @@
   </form>
 </template>
 <script setup lang="ts">
+const props = defineProps<{ word: string; title: string }>()
+const emit = defineEmits<{ (e: 'failed'): void }>()
+
 const inputRef = ref()
-const word = ref('abandon')
 const inputs = ref<string[]>([])
 const curIndex = ref()
-const wordLen = computed(() => word.value.length)
+const wordLen = computed(() => props.word.length)
 
 const validateRes = ref<(boolean | '')[]>([])
 
 let watchHandle: any
 
 function onFailed() {
-  console.log('onFailed')
+  emit('failed')
 }
 
 function isAlphaKey(event: KeyboardEvent) {
@@ -49,7 +52,7 @@ function validate() {
     if (input === '') {
       return ''
     } else {
-      const res = input === word.value[index]
+      const res = input === props.word[index]
       !res && (fail = true)
       return res
     }
@@ -84,6 +87,14 @@ function inputNextFocus(e: KeyboardEvent, index: number) {
     )
   }
 }
+function reset() {
+  inputs.value = []
+  validate()
+  inputRef.value[0].focus()
+}
+defineExpose({
+  reset
+})
 </script>
 <style lang="scss" scoped>
 $success_color: #67c23a;
