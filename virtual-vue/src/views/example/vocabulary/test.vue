@@ -22,7 +22,7 @@
 </template>
 <script setup lang="ts">
 const props = defineProps<{ word: string; title: string }>()
-const emit = defineEmits<{ (e: 'failed'): void }>()
+const emit = defineEmits<{ (e: 'failed'): void; (e: 'success'): void }>()
 
 const inputRef = ref()
 const inputs = ref<string[]>([])
@@ -65,7 +65,6 @@ function inputBlur(e: KeyboardEvent) {
     return
   }
   validate()
-  inputRef.value[curIndex.value].blur()
   watchHandle()
 }
 
@@ -85,6 +84,8 @@ function inputNextFocus(e: KeyboardEvent, index: number) {
         deep: true
       }
     )
+  } else {
+    emit('success')
   }
 }
 function reset() {
